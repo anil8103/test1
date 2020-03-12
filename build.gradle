@@ -1,0 +1,50 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+plugins {
+    id "org.sonarqube" version "2.6.2"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "Test"
+        property "sonar.projectName", "Test"
+        property "sonar.branch.name", getPropertyWithDefault('SONAR_BRANCH_NAME', "")
+        property 'sonar.core.codeCoveragePlugin', 'jacoco'
+        property "sonar.jacoco.reportPaths", "build/jacoco/testDebugUnitTest.exec"
+    }
+}
+}
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+
+}
+dependencies {
+    // This dependency is exported to consumers, that is to say found on their compile classpath.
+    api 'org.apache.commons:commons-math3:3.6.1'
+
+    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+    implementation 'com.google.guava:guava:27.0.1-jre'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+//task clean(type: Delete) {
+    delete rootProject.buildDir
+//}

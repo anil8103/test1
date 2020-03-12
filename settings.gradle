@@ -1,0 +1,2 @@
+include 'SonarQubeAndroidAPP'
+rootProject.name='SonarQubeAndroidAPP'
